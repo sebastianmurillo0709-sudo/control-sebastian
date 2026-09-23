@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-title" content="Control Sebastian">
 <meta name="mobile-web-app-capable" content="yes">
 <title>Control Sebastian</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
 <style>
   [hidden] { display: none !important; }
   :root {
@@ -66,7 +66,7 @@
   html, body { margin: 0; padding: 0; background: var(--bg); }
   body {
     color: var(--ink);
-    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, .display {
@@ -81,15 +81,24 @@
 
   .topbar { position: sticky; top: 0; z-index: 10; background: var(--bg); padding-top: calc(env(safe-area-inset-top, 0px) + 18px); border-bottom: 1px solid var(--line); }
   .topbar-inner { padding: 0 20px 14px; }
-  .brand { font-size: 22px; margin: 0 0 14px; color: var(--ink); }
-  .balance-hero { display: flex; flex-direction: column; gap: 2px; }
-  .balance-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-muted); }
-  .balance-value { font-family: "Fraunces", Georgia, serif; font-size: 34px; font-weight: 600; font-variant-numeric: tabular-nums; }
-  .balance-value.pos { color: var(--good); }
-  .balance-value.neg { color: var(--critical); }
+  .brand { font-size: 20px; margin: 0 0 14px; color: var(--ink); text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; }
+  .balance-hero {
+    display: flex; flex-direction: column; gap: 6px;
+    background: linear-gradient(135deg, #21261f 0%, #1a1f18 60%, #2a2416 100%);
+    border-radius: 18px; padding: 18px 20px; position: relative; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 12px 28px -14px rgba(0,0,0,0.45);
+  }
+  .balance-hero::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(120% 90% at 100% 0%, rgba(217,172,79,0.22), transparent 55%);
+  }
+  .balance-label { position: relative; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.1em; color: #d9ac4f; font-weight: 600; }
+  .balance-value { position: relative; font-family: "Fraunces", Georgia, serif; font-size: 34px; font-weight: 600; font-variant-numeric: tabular-nums; color: #f6f2e8; }
+  .balance-value.pos { color: #7fe08a; }
+  .balance-value.neg { color: #f0897f; }
 
   .tabs { display: flex; gap: 4px; padding: 0 14px; overflow-x: auto; }
-  .tab { flex: 1; border: none; background: none; padding: 10px 8px 12px; color: var(--ink-soft); font-size: 14px; font-weight: 600; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
+  .tab { flex: 1; border: none; background: none; padding: 10px 8px 12px; color: var(--ink-soft); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
   .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 
   main { flex: 1; padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 16px; max-width: 640px; width: 100%; margin: 0 auto; }
@@ -110,7 +119,7 @@
   .stat-tile.save .stat-value { color: var(--ink); }
 
   .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 12px; position: relative; }
-  .card h2 { font-size: 16px; }
+  .card h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); padding-bottom: 8px; border-bottom: 2px solid var(--accent); display: inline-block; }
   .empty-note { color: var(--ink-muted); font-size: 13px; margin: 0; }
   .section-intro { color: var(--ink-soft); font-size: 13px; margin: 0; }
 
@@ -172,7 +181,7 @@
   .card-row-name { font-size: 14px; font-weight: 600; }
   .card-row-meta { font-size: 12px; color: var(--ink-muted); }
   .card-figure { text-align: right; font-size: 14.5px; font-weight: 700; font-variant-numeric: tabular-nums; flex: none; color: var(--ink); }
-  .card-figure small { display: block; font-family: "Inter", sans-serif; font-weight: 400; font-size: 10.5px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 2px; }
+  .card-figure small { display: block; font-family: "Plus Jakarta Sans", sans-serif; font-weight: 400; font-size: 10.5px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 2px; }
   .card-figure small.gain-up { color: var(--good); text-transform: none; letter-spacing: 0; }
   .card-figure small.gain-down { color: var(--critical); text-transform: none; letter-spacing: 0; }
 
@@ -180,7 +189,7 @@
 
   .modal-overlay { position: fixed; inset: 0; background: rgba(20,20,15,0.45); display: flex; align-items: flex-end; z-index: 50; }
   .modal { background: var(--surface); width: 100%; max-width: 640px; margin: 0 auto; border-radius: 20px 20px 0 0; padding: 20px 20px calc(env(safe-area-inset-bottom, 0px) + 20px); display: flex; flex-direction: column; gap: 14px; max-height: 88vh; overflow-y: auto; }
-  .modal h2 { font-size: 18px; }
+  .modal h2 { font-size: 16px; text-transform: uppercase; letter-spacing: 0.08em; }
   .type-toggle { display: flex; gap: 8px; }
   .type-btn { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink-soft); font-weight: 600; cursor: pointer; }
   .type-btn.active[data-type="expense"] { background: var(--critical); color: #fff; border-color: var(--critical); }
@@ -231,9 +240,9 @@
       </div>
 
       <div class="stat-row">
-        <div class="stat-tile income"><span class="stat-label">Ingresos</span><span class="stat-value" id="monthIncome">$0</span></div>
-        <div class="stat-tile expense"><span class="stat-label">Gastos</span><span class="stat-value" id="monthExpense">$0</span></div>
-        <div class="stat-tile save"><span class="stat-label">Ahorro</span><span class="stat-value" id="monthSavings">$0</span></div>
+        <div class="stat-tile income"><span class="stat-label">↑ Ingresos</span><span class="stat-value" id="monthIncome">$0</span></div>
+        <div class="stat-tile expense"><span class="stat-label">↓ Gastos</span><span class="stat-value" id="monthExpense">$0</span></div>
+        <div class="stat-tile save"><span class="stat-label">◆ Ahorro</span><span class="stat-value" id="monthSavings">$0</span></div>
       </div>
 
       <div class="card">
@@ -393,20 +402,28 @@
   var API_TOKEN = "c4023bef4fe649e0a3c179f3f2711bd1";
 
   var EXPENSE_CATEGORIES = [
-    { id: "vivienda", label: "Vivienda", color: "var(--series-1)" },
-    { id: "mercado", label: "Mercado", color: "var(--series-2)" },
-    { id: "transporte", label: "Transporte", color: "var(--series-3)" },
-    { id: "salud", label: "Salud", color: "var(--series-4)" },
-    { id: "entretenimiento", label: "Entretenimiento", color: "var(--series-5)" },
-    { id: "educacion", label: "Educación", color: "var(--series-6)" },
-    { id: "restaurantes", label: "Restaurantes", color: "var(--series-7)" },
-    { id: "otros_gasto", label: "Otros", color: "var(--series-8)" }
+    { id: "vivienda", label: "Vivienda", icon: "🏠", color: "var(--series-1)" },
+    { id: "mercado", label: "Mercado", icon: "🛒", color: "var(--series-2)" },
+    { id: "transporte", label: "Transporte", icon: "🚗", color: "var(--series-3)" },
+    { id: "salud", label: "Salud", icon: "⚕️", color: "var(--series-4)" },
+    { id: "mascota", label: "Mascota", icon: "🐾", color: "var(--series-5)" },
+    { id: "servicios_publicos", label: "Servicios públicos", icon: "💡", color: "var(--series-6)" },
+    { id: "telecomunicaciones", label: "Telecomunicaciones", icon: "📶", color: "var(--series-7)" },
+    { id: "streaming", label: "Streaming", icon: "🎬", color: "var(--series-8)" },
+    { id: "deudas", label: "Deudas", icon: "💳", color: "var(--series-1)" },
+    { id: "exequias", label: "Plan funerario", icon: "🕊️", color: "var(--series-2)" },
+    { id: "entretenimiento", label: "Entretenimiento", icon: "🎉", color: "var(--series-3)" },
+    { id: "educacion", label: "Educación", icon: "🎓", color: "var(--series-4)" },
+    { id: "restaurantes", label: "Restaurantes", icon: "🍽️", color: "var(--series-5)" },
+    { id: "ocio", label: "Ocio y salidas", icon: "✨", color: "var(--series-6)" },
+    { id: "inversion_gasto", label: "Inversión", icon: "📈", color: "var(--series-7)" },
+    { id: "otros_gasto", label: "Otros", icon: "🔖", color: "var(--series-8)" }
   ];
   var INCOME_CATEGORIES = [
-    { id: "salario", label: "Salario" },
-    { id: "freelance", label: "Freelance" },
-    { id: "ventas", label: "Ventas" },
-    { id: "otros_ingreso", label: "Otros ingresos" }
+    { id: "salario", label: "Salario", icon: "💼" },
+    { id: "freelance", label: "Freelance", icon: "🧑‍💻" },
+    { id: "ventas", label: "Ventas", icon: "🏷️" },
+    { id: "otros_ingreso", label: "Otros ingresos", icon: "➕" }
   ];
   var PAYMENT_COLORS = ["var(--series-1)", "var(--series-3)", "var(--series-4)", "var(--series-5)", "var(--series-7)", "var(--series-2)"];
   var INVESTMENT_TYPE_LABELS = { cdt: "CDT", fondo: "Fondo de inversión", acciones: "Acciones", cripto: "Criptomonedas", otro: "Otro" };
@@ -588,7 +605,7 @@
     el.monthSavings.style.color = savings < 0 ? "var(--critical)" : "var(--good)";
 
     var catRows = EXPENSE_CATEGORIES
-      .map(function (c) { return { label: c.label, color: c.color, amount: byCategory[c.id] || 0 }; })
+      .map(function (c) { return { label: (c.icon ? c.icon + " " : "") + c.label, color: c.color, amount: byCategory[c.id] || 0 }; })
       .filter(function (r) { return r.amount > 0; })
       .sort(function (a, b) { return b.amount - a.amount; });
     renderBarList(el.categoryChart, el.categoryEmpty, catRows);
@@ -707,7 +724,7 @@
       return (
         '<div class="budget-input-row" data-cat="' + c.id + '">' +
         '<span class="budget-input-label"><span class="cat-dot" style="background:' + c.color + '"></span>' +
-        "<span>" + c.label + '<span class="budget-input-spent">Gastado este mes: ' + fmt(spent) + "</span></span></span>" +
+        "<span>" + (c.icon ? c.icon + " " : "") + c.label + '<span class="budget-input-spent">Gastado este mes: ' + fmt(spent) + "</span></span></span>" +
         '<span class="budget-input-wrap">' +
         '<input type="number" min="0" step="1000" placeholder="0" value="' + current + '" data-cat-input="' + c.id + '">' +
         '<button type="button" class="budget-save" data-cat-save="' + c.id + '">Guardar</button></span></div>'
@@ -948,7 +965,7 @@
 
     var currentCat = el.filterCategory.value || "all";
     var allCats = EXPENSE_CATEGORIES.concat(INCOME_CATEGORIES);
-    el.filterCategory.innerHTML = '<option value="all">Toda categoría</option>' + allCats.map(function (c) { return '<option value="' + c.id + '">' + c.label + "</option>"; }).join("");
+    el.filterCategory.innerHTML = '<option value="all">Toda categoría</option>' + allCats.map(function (c) { return '<option value="' + c.id + '">' + (c.icon ? c.icon + " " : "") + c.label + "</option>"; }).join("");
     el.filterCategory.value = currentCat;
 
     var currentPay = el.filterPayment.value || "all";
@@ -994,7 +1011,7 @@
       row.className = "tx-row";
       row.innerHTML =
         '<span class="tx-dot" style="background:' + (t.type === "income" ? "var(--good)" : (cat ? cat.color : "var(--ink-muted)")) + '"></span>' +
-        '<span class="tx-info"><span class="tx-cat">' + (cat ? cat.label : "Otro") + "</span>" +
+        '<span class="tx-info"><span class="tx-cat">' + (cat && cat.icon ? cat.icon + " " : "") + (cat ? cat.label : "Otro") + "</span>" +
         (t.note ? '<span class="tx-note">' + escapeHtml(t.note) + "</span>" : "") +
         (t.type === "expense" ? '<span class="tx-meta">' + paymentLabel(t) + "</span>" : "") +
         "</span>" +
@@ -1030,7 +1047,7 @@
   function setType(type) {
     currentType = type;
     paintTypeButtons(type);
-    el.fCategory.innerHTML = catList(type).map(function (c) { return '<option value="' + c.id + '">' + c.label + "</option>"; }).join("");
+    el.fCategory.innerHTML = catList(type).map(function (c) { return '<option value="' + c.id + '">' + (c.icon ? c.icon + " " : "") + c.label + "</option>"; }).join("");
     el.paymentMethodField.hidden = type !== "expense";
     if (type !== "expense") { el.fPaymentType.value = "efectivo"; el.cardField.hidden = true; }
   }
